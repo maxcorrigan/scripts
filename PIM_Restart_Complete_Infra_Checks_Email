@@ -1,0 +1,12 @@
+##################################################
+##  AB PIM RESTART COMPLETE NOTIFICATION EMAIL  ##
+##					creator: mcorrigan          ##
+##				    March 2019 	                ##
+##################################################
+# .sh
+
+echo "The PIM restart is now complete, check PIM Exports and ActiveVOS tasks.
+>AB ActiveVOS:   http://hd1ppim03lx.digital.hbc.com:8080/activevos/home.action
+>AB PIM Server:  nyco-ms-ppim10.intranet.saksroot.saksinc.com
+>Bay ActiveVOS:  http://hd1ppim15lx.digital.hbc.com:8080/activevos/home.action
+>Bay PIM Server: nyco-ms-ppim15.intranet.saksroot.saksinc.com" | mail -s "Check PROD PIM Restart" hbcdigitalinfrastructuresupport@hbc.com

@@ -1,0 +1,11 @@
+##################################################
+##  AB PIM RESTART COMPLETE NOTIFICATION EMAIL  ##
+##					creator: mcorrigan          ##
+##				    March 2019 	                ##
+##################################################
+# .sh
+
+echo "Hi all,
+>The PIM restart is now complete. You can login and proceed as normal.
+>Thanks,
+>InfraOps" | mail -s "AB PROD PIM Restart" digital-ops-solutions-analytics@hbc.com,hbcdigitalinfrastructuresupport@hbc.com,hbcdigitalpimadmin@saksinc.com,hbc.productcopy@taskus.com,pimgeneralannouncements@hbc.com

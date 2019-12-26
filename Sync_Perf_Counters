@@ -1,0 +1,16 @@
+####################################
+##   SYNC PERFORMANCE COUNTERS    ##
+##	creator: mcorrigan        ##
+##		March 2019	  ##
+####################################
+# .ps1
+
+echo "Syncing Performance Counters"
+cd c:\windows\system32
+lodctr /R
+cd c:\windows\sysWOW64
+lodctr /R
+WINMGMT.EXE /RESYNCPERF
+echo "`n"
+echo "Sync Complete"
+Read-Host -Prompt “Press Enter to exit”

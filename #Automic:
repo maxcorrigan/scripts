@@ -1,0 +1,21 @@
+#Automic:
+#Agent(?): HD1PDW02LX
+#Queue(?)): CLIENT_QUEUE
+#Shell: -sh
+#Command: sudo -iu cognos /home/cognos/ACTIVEVOS_SHUTDOWN.sh
+#
+##SQL
+#
+
+#fault active processes
+update "ACTIVEVOS"."AEPROCESS" set "PROCESSSTATE"=4
+where "PROCESSSTATE"=1;
+
+#disable scheduled processes
+update "ACTIVEVOS"."AESCHEDULER" set "STATE"=0
+where "SCHEDULENAME" in ('Task Manager','NewColor', 'RollUpWorkflow')
+and "STATE"=1;
+
+#re-enable
+update “ACTIVEVOS"."AESCHEDULER" set "STATE"=2
+where "SCHEDULENAME" in ('Task Manager','NewColor', 'RollUpWorkflow');

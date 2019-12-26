@@ -1,0 +1,35 @@
+#########################################
+##  AUTOMATED RESTART OF PIM AB PROD   ##
+##			   March 2019	           ##
+#########################################
+# .ps1
+
+$PIM = Get-Service PIM_7.1
+$timer = [Diagnostics.Stopwatch]::StartNew()
+$Console = "console."" +  (Get-Date -Format "MMddyyyy") + ".log"
+
+###Initiate SQL changes from shell script on hd1ppim03lx via atomic
+###Problem with execution policy
+
+echo "Stopping PIM"
+Move-Item -Path E:\Informatica\PIM\server\logs\console.log -Destination E:\Informatica\PIM\server\logs\Backup\$Console
+Stop-Service $PIM -Force
+Start-Sleep -Seconds 300
+echo “Starting PIM”
+Start-Service $PIM
+Start-Sleep -Minutes 60
+While (-not (Select-String -Path "D:\Informatica\PIM\server\logs\console.log" -Pattern "Server Started"))
+{
+	Write-Verbose -Message "Waiting for PIM Start to complete…"
+	if ($timer.Elapsed.TotalSeconds -ge 5400)
+	{
+		throw "Timeout exceeded. Check PIM console logs for errors."
+	}
+	Start-Sleep -Seconds 60
+}
+$timer.Stop()
+
+Write-Host "PLEASE CHECK PIM EXPORTS AND ACTIVEVOS PROCESSES MANUALLY TO CONFIRM SUCCESS."
+
+###Following line for testing purposes only
+Read-Host -Prompt “Press Enter to exit”

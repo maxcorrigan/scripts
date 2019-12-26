@@ -1,0 +1,14 @@
+#########################################
+##  AB PIM RESTART NOTIFICATION EMAIL  ##
+##			creator: mcorrigan         ##
+##				March 2019 	           ##
+#########################################
+# .sh
+
+echo "Hi all,
+>We will be restarting PROD $Banner PIM at $Start_time tonight. 
+>How you are impacted:
+>- All users need to logout of $Banner PIM by $Start_time tonight {Rich client and Web UI}.
+>- We will send a notification when PIM is back up after the maintenance.
+>Thanks,
+>InfraOps" | mail -s "AB PROD PIM Restart" digital-ops-solutions-analytics@hbc.com,hbcdigitalinfrastructuresupport@hbc.com,hbcdigitalpimadmin@saksinc.com,hbc.productcopy@taskus.com,pimgeneralannouncements@hbc.com
